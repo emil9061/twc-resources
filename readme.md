@@ -4,7 +4,7 @@
 ```
 export TWC_TOKEN=<token>
 export AWS_ACCESS_KEY_ID=<access_key>
-export AWS_SECRET_ACCESS)KEY=<secret_key>
+export AWS_SECRET_ACCESS_KEY=<secret_key>
 ```
 
 ### Init, plan and deploy
