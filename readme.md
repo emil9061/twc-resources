@@ -1,21 +1,23 @@
-# Debian 12 basic VM
+# Timeweb Cloud resources
 
 ### Prepare environment
 ```
 export TWC_TOKEN=<token>
 export AWS_ACCESS_KEY_ID=<access_key>
 export AWS_SECRET_ACCESS_KEY=<secret_key>
-```
-
-### Init, plan and deploy
-```
+export TF_CLI_CONFIG_FILE=/path/to/.tfrc
 alias tf=terraform
-tf init -reconfigure
-tf plan
-tf apply -auto-approve
 ```
 
-### Delete vm
+### .tfrc
 ```
-tf destroy -auto-approve
+provider_installation {
+  network_mirror {
+    url = "https://terraform-mirror.yandexcloud.net/"
+    include = ["registry.terraform.io/*/*"]
+  }
+  direct {
+    exclude = ["registry.terraform.io/*/*"]
+  }
+}
 ```

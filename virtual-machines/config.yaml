@@ -1,0 +1,21 @@
+name: basic-vm
+os: debian:12
+location: nl-1
+spec:
+  cpu_cores: 1
+  ram_gb: 1
+  storage:
+    size_gb: 15
+    disk_type: nvme
+  network:
+    public_ip: false
+    ssh:
+      public_key: ~/.ssh/keys/cloud.pub
+      private_key: ~/.ssh/keys/cloud
+  cloud_init: |-
+    #cloud-config
+    package_update: true
+    package_upgrade: true
+    packages:
+      - curl
+      - git
