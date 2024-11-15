@@ -35,7 +35,7 @@ resource "twc_server_ip" "public-ipv4" {
 
 resource "null_resource" "reboot" {
   triggers = {
-    id = twc_server_ip.public-ipv4[0].id
+    public_ip = local.vm.spec.network.public_ip
   }
   provisioner "local-exec" {
     command = <<EOT
