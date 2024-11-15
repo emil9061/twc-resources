@@ -1,3 +1,3 @@
 locals {
-  vm = yamldecode(file("./config.yaml"))
+  vm = yamldecode(file("./configuration.yaml"))
 }

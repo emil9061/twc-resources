@@ -1,0 +1,5 @@
+.terraform
+*.tfstate
+providers
+*.lock.hcl
+.vscode

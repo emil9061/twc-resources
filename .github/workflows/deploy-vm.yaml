@@ -1,0 +1,26 @@
+name: run-virtual-machine-deploy
+run-name: "[terraform] Deploy VM to Timeweb Cloud"
+on: 
+  push:
+    branches:
+      - master
+env:
+  TWC_TOKEN: ${{ secrets.TWC_TOKEN }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+jobs:
+  deploy-vm:
+    runs-on: 
+      - self-hosted
+      - linux
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+      - name: Plan 
+        env:
+          TF_CLI_CONFIG_FILE: ./../.terraformrc
+        working-directory: ./virtual-machines
+        run: terraform init && terraform plan
+      - name: Apply
+        working-directory: ./virtual-machines
+        run: terraform apply -auto-approve

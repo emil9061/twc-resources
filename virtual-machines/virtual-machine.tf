@@ -33,19 +33,6 @@ resource "twc_server_ip" "public-ipv4" {
   type = "ipv4"
 }
 
-resource "null_resource" "reboot" {
-  triggers = {
-    public_ip = local.vm.spec.network.public_ip
-  }
-  provisioner "local-exec" {
-    command = <<EOT
-      ssh -tt -o StrictHostKeyChecking=no root@${twc_server_ip.public-ipv4[0].id} `
-      -i ${local.vm.spec.network.ssh.private_key} "cloud-init clean --reboot"
-    EOT
-    interpreter = ["powershell"]
-  }
-}
-
 output "PublicIP" {
   value = local.vm.spec.network.public_ip ? twc_server_ip.public-ipv4[0].ip : "No public IP is assigned"
   description = "Public IP"
