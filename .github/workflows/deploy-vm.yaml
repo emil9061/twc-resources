@@ -12,7 +12,7 @@ jobs:
   deploy-vm:
     runs-on: 
       - self-hosted
-      - linux
+      - linux-vm
     steps:
       - name: Checkout 
         uses: actions/checkout@v4
