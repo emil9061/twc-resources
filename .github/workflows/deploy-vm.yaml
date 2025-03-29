@@ -13,8 +13,7 @@ env:
 jobs:
   deploy-vm:
     runs-on: 
-      - self-hosted
-      - linux-vm
+      - ubuntu
     steps:
       - name: Checkout 
         uses: actions/checkout@v4
